@@ -1,0 +1,48 @@
+html{
+    font-size: 14px;
+}
+body{
+    background-color: #eeeeee;
+    padding: 0;
+    margin: auto;
+}
+.head{
+    background: aquamarine;
+    padding: 1.43rem;
+    border-bottom: 2px solid #2ba029;
+}
+.field {
+    padding: 2.14rem;
+    display: flex;
+}
+
+.soldier{
+    height: 21.43rem;
+    width: 14.29rem;
+    border: 2px solid #2ba029;
+    border-radius: 0.71rem;
+    padding: 0.71rem;
+    margin:10px;
+}
+.soldier.active{
+    box-shadow: 0 0 7px #0c56e2;
+}
+.soldier:hover{
+    box-shadow: 0 0 5px #000000;
+}
+.soldier .img{
+    height: 12.86rem;
+    width: 12.86rem;
+    background: url(../img/soldier.jpeg) center no-repeat;
+    background-size: contain;
+    border-radius: 50%;
+    margin:0 auto;
+    border:1px solid #cccccc;
+}
+.super{
+    border-color: #daa520;
+}
+.super .img{
+    background: url(../img/super-soldier.jpeg) center no-repeat;
+    background-size: contain;
+}

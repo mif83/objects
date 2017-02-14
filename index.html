@@ -2,9 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Soldier</title>
+    <link rel="stylesheet" href="css/my.css">
 </head>
 <body>
+    <div class="head">
+
+        <label >Soldier<input name="soldier" type="radio" value="Soldier" checked></label>
+        <label >SuperSoldier<input name="soldier" type="radio" value="SuperSoldier"></label>
+        <input type="text" id="soldier-param" placeholder="name:power:text">
+        <button id="create">Create Soldier</button>
+        <button id="drop">Drop backpack</button>
+        <button id="buy">Buy backpack</button>
+        <select name="things" id="things">
+            <option value="knife:1">knife 1kg</option>
+            <option value="sword:3">sword 3kg</option>
+            <option value="helmet:3">helmet 3kg</option>
+            <option value="grenade:1">grenade 1kg</option>
+            <option value="water:15">water 15kg</option>
+            <option value="food:20">food 20kg</option>
+            <option value="machine gun:20">machine gun 20kg</option>
+            <option value="amo:10">amon 10kg</option>
+        </select>
+        <button id="add-backpack">Add item to backpack</button>
+        <button id="add-bag" disabled>Add item to bag</button>
+
+    </div>
+    <div class="field">
+        <div class="soldier">
+            <div class="img"></div>
+        </div>
+        <div class="soldier active">
+            <div class="img"></div>
+        </div>
+        <div class="soldier super">
+            <div class="img"></div>
+        </div>
+    </div>
 <script src="js/my.js"></script>
 </body>
 </html>
