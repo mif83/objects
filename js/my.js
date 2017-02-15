@@ -66,6 +66,14 @@ Soldier.prototype.drowOnChangeBackpack = function (option) {
         backpackList.appendChild(thing);
         return;
     };
+    if (option == "addThingtoBag"){
+        var thing = document.createElement("li");
+        var backpackList = this.self.querySelector(".bag ol");
+        thing.innerHTML = this.bag.items[this.bag.items.length-1].name +" " +
+            + this.bag.items[this.bag.items.length-1].weight + "kg";
+        backpackList.appendChild(thing);
+        return;
+    };
     if (option == "dropThing"){
         var backpackList = [].slice.call( this.self.querySelectorAll(".backpack ol li")),
             drop = false,
@@ -77,7 +85,19 @@ Soldier.prototype.drowOnChangeBackpack = function (option) {
             }
         });
         return;
-    }
+    };
+    if (option == "dropThingFromBag"){
+        var backpackList = [].slice.call( this.self.querySelectorAll(".bag ol li")),
+            drop = false,
+            things = document.getElementById("things").value.split(":");
+        backpackList.forEach(function(item){
+            if ( item.textContent.search(things[0]) != -1 && !drop) {
+                item.parentNode.removeChild(item);
+                drop = true;
+            }
+        });
+        return;
+    };
 };
 /***
 *   name: "knife", (String)
@@ -196,6 +216,23 @@ function action(e){
         squad.forEach(function(item){
             if(item.activate) {
                 if(item.getFromBackpack(things[0],"backpack")) item.drowOnChangeBackpack("dropThing");
+            }
+        })
+    };
+    if (e.target.getAttribute("id") == "add-bag"){
+        var things = document.getElementById("things").value.split(":");
+        squad.forEach(function(item){
+            if(item.activate) {
+                if(item.putToBackpack(things[0], things[1], "bag")) item.drowOnChangeBackpack("addThingtoBag");
+            }
+        });
+
+    };
+    if (e.target.getAttribute("id") == "drop-from-bag"){
+        things = document.getElementById("things").value.split(":");
+        squad.forEach(function(item){
+            if(item.activate) {
+                if(item.getFromBackpack(things[0],"bag")) item.drowOnChangeBackpack("dropThingFromBag");
             }
         })
     };
