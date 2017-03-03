@@ -8,6 +8,11 @@ function Soldier(name, power, message){
     this.backpack = new Backpack() ;
     if(!this.self) this.drow();
 }
+/**
+ *
+ * @param {number} volume - param specifies the number of cells in a backpack
+ * @constructor
+ */
 function Backpack(volume){
     this.volume = volume || 10;
     this.items = [];
@@ -46,6 +51,10 @@ Soldier.prototype.countWeight = function () {
     };
     return count;
 };
+/**
+ *
+ * @param {string} option
+ */
 Soldier.prototype.drowOnChangeBackpack = function (option) {
     if(!this.backpack){
         this.self.querySelector("ul").removeChild(this.self.getElementsByClassName("backpack")[0]);
@@ -99,10 +108,13 @@ Soldier.prototype.drowOnChangeBackpack = function (option) {
         return;
     };
 };
-/***
-*   name: "knife", (String)
-*  weight: 1.1     (Number or string)
-***/
+/**
+ *
+ * @param {string} name    things name
+ * @param {number} weight
+ * @param {string} bagKind  "bag" or "bakpack"
+ * @returns {boolean|string}  if item put in, return array of items on string format
+ */
 Soldier.prototype.putToBackpack = function(name, weight, bagKind){
     var bagKind = bagKind || "backpack",
         self = this[bagKind],
@@ -122,9 +134,12 @@ Soldier.prototype.putToBackpack = function(name, weight, bagKind){
     self.items.push(item);
     return JSON.stringify(self.items);
 };
-/***
-* itemName (String)
-***/
+/**
+ *
+ * @param {string }itemName
+ * @param {string} bagKind    choise backpak or bag
+ * @returns {boolean}
+ */
 Soldier.prototype.getFromBackpack = function(itemName, bagKind){
     var count = 0,
         bagKind = bagKind || "backpack",
@@ -150,16 +165,22 @@ Soldier.prototype.speech = function (str) {
     var str = str || "";
     console.info("The man "+ this.name + " said " + this.message + "\n" + str);
 };
-
+/**
+ *
+ * @param {string} name
+ * @param {number} power
+ * @param {string} message
+ * @constructor
+ */
 function SuperSoldier(name, power, message){
     var name = name || "John",
         power = power || 20,
         message = message || "I am the best of the best";
     Soldier.call(this, name, power, message);
     this.bag = new Backpack(5);
-  //  this.quality = "super";
 }
 SuperSoldier.prototype = Object.create(Soldier.prototype);
+SuperSoldier.prototype.constructor = SuperSoldier;
 
 SuperSoldier.prototype.putToBag = function(name, weight){
     var kindBag = "bag";
@@ -176,9 +197,10 @@ SuperSoldier.prototype.drow = function(){
     bag.innerHTML = "<span>Bag: </span><ol></ol>";
     this.self.querySelector("ul").appendChild(bag);
 };
-document.getElementsByClassName("head")[0].addEventListener("click", action);
-document.getElementsByClassName("field")[0].addEventListener("click",activateSoldier);
-
+/**
+ * After click choise the action
+ * @param {object} e  event
+ */
 function action(e){
     if (e.target.getAttribute("id") == "create"){
 
@@ -237,6 +259,10 @@ function action(e){
         })
     };
 }
+/**
+ * Add class active after choise soldier and chek elem
+ * @param {object} e   event
+ */
 function activateSoldier(e){
     var target = e.target;
     while (target != document.body) {
@@ -270,4 +296,7 @@ function activateSoldier(e){
         }
     });
 }
+
 var squad = [];
+document.getElementsByClassName("head")[0].addEventListener("click", action);
+document.getElementsByClassName("field")[0].addEventListener("click",activateSoldier);
