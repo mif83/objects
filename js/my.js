@@ -296,7 +296,7 @@ function activateSoldier(e){
         }
     });
 }
-
+// Global array of the feature soldiers
 var squad = [];
 document.getElementsByClassName("head")[0].addEventListener("click", action);
 document.getElementsByClassName("field")[0].addEventListener("click",activateSoldier);
